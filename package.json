@@ -1,0 +1,12 @@
+{
+  "name"         : "Yodlee_Demo",
+  "version"      : "0.0.1",
+  "description"  : "Demo to demonstrate to Yodlee Account Aggregation",
+  "main"         : "server.js",
+  "author"       : "Yodlee",
+  "dependencies" : {
+    "express"    : "~4.7.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+    }
+}

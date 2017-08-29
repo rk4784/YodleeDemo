@@ -1,28 +1,13 @@
-// var http = require('http'),
-//     fs = require('fs');
+var express = require('express');
+var app = express(); // create our app w/ express
+var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-var http = require('http');
-var express = require('express')
-var request = require('request');
-var bodyParser = require('body-parser')
-var cors = require('cors')
-var app = express()
-var qs = require('querystring');
-var fs = require("fs");
+app.use(express.static(__dirname + '/')); // set the static files location /public/img will be /img for users
+app.use(bodyParser.urlencoded({ 'extended': 'true' })); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(methodOverride());
 
-app.set('view engine','html');
-
-fs.readFile('index.html', function (err, html) {
-    if (err) {
-        throw err; 
-    }       
-    http.createServer(function(request, response) {  
-        response.writeHeader(200, {"Content-Type": "text/html"});  
-        response.write(html);  
-        response.end();  
-    }).listen(8000);
-});
-
-app.get('/rahul',function(req,res){
-res.render('index');
-});
+app.listen(3000);
+console.log("App listening on port 3000");
