@@ -50,7 +50,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
     $('.modal').modal({
         dismissible: false
     });
-    $location.search('status', null);
+
     $('.modal-overlay').remove();
     cobrandLogin();
 
@@ -306,7 +306,9 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
         var iframe = document.createElement('iframe');
         iframe.height = "100%";
         iframe.width = "100%";
-        var html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script></HEAD><BODY><form action="' + properties.Urls.finApp + '" method="post" style="display:none;">User Session: <input type="text" name="rsession" value="' + userSessionToken + '"><br><br> User Token:<input type="text" name="token" value="' + Token + '"><input type="text" name="extraParams" value="&callback=http://localhost/FL2.2/#/modal1&cbLocation=top"><br><br> App ID:<input type="text" name="app" value="10003600"><br><br> Request Redirect:<input type="text" name="redirectReq" value="true"><<br><br><input type="submit" value="Submit"></form><script type="text/javascript">window.document.forms[0].submit();</script></body></html>';
+        var location = window.location.href;
+
+        var html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script></HEAD><BODY><form action="' + properties.Urls.finApp + '" method="post" style="display:none;">User Session: <input type="text" name="rsession" value="' + userSessionToken + '"><br><br> User Token:<input type="text" name="token" value="' + Token + '"><input type="text" name="extraParams" value="&callback=' + location + '&cbLocation=top"><br><br> App ID:<input type="text" name="app" value="10003600"><br><br> Request Redirect:<input type="text" name="redirectReq" value="true"><<br><br><input type="submit" value="Submit"></form><script type="text/javascript">window.document.forms[0].submit();</script></body></html>';
         iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
         var a = document.getElementById("FLDiv");
         a.appendChild(iframe)
