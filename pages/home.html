@@ -1,0 +1,121 @@
+<nav style="background: #00529f">
+    <div class="nav-wrapper">
+        <a class="brand-logo center" style="font-family: ProximaNovaSemiBold;">Yodlee account aggeration demo</a>
+    </div>
+</nav>
+<div class="row mainRow">
+    <div class="col s12">
+        <h5 style="color:#00529f;font-family: ProximaNovaSemiBold;"></h5>
+        <span style="font-family: ProximaNovaRegular;">This is an application demo for Yodlee account 
+            aggregation tool which demonstrates 
+            how an account can be aggregated and how can the 
+            aggregated data be retrieved and used.
+        </span>
+        <br>
+        <br>
+    </div>
+</div>
+<div class="row mainRow">
+    <div class="col s12" style="font-family: ProximaNovaRegular;margin-top: 10px;">
+        Click the button below to open Yodlee account aggeration tool (Yodlee account aggeration tool is a pre-packaged widget connected to the Yodlee sandbox enviroment. This widget lets consumers add accounts by searching for the website of a financial institution and entering the login credentials for the account(s) held there. Consumers can add savings, checking, investment, credit card, insurance account types and many more).
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col s12">
+        <button class="primaryButton btn modal-trigger modal1" href="#modal1" ng-click="LinkAccountButtonClicked()" ng-disabled="linkAccountButtonDisable">Link Account</a>
+        </button>
+    </div>
+</div>
+<div ng-show="showAllData">
+    <div class="row">
+        <div class="col s6 fmbold" style="font-size: 20px;padding-left: 15px;">Transactions</div>
+        <div class="col s6 fmbold" style="font-size: 20px;padding-left: 15px;">Accounts</div>
+    </div>
+    <div class="row fmregular">
+        <div class="col s6" style="height: 800px">
+            <div class="finalPageColContent" style="height: 800px;overflow: scroll;">
+                <div class="row">
+                    <div class="col s12" style="padding: 0px;">
+                        <div class="finalPageColContentSiteHeader" style="padding-left: 10px;">
+                            Posted Transactions
+                        </div>
+                        <div style="text-align: center;margin-top: 80px;height: 100px" ng-show="!transaction_show">
+                            <img src="img/loading.gif" style="width: 100px;">
+                        </div>
+                        <div ng-repeat="z in postedTranscation">
+                            <div class="row">
+                                <div class="col s12" style="padding: 0px;">
+                                    <div class="col-content subheader">
+                                        {{z.date}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row transactionRow" style="margin-top:10px;height: 53px;" ng-repeat="u in z.details">
+                                <div class="col s6">
+                                    <span class="transactionType fmbold">{{u.description}}</span>
+                                    <br>
+                                    <span class="transactionName" style="text-align: left; padding-top: 5px;padding-bottom: 10px;"></span>
+                                </div>
+                                <div class="col s3">
+                                    <span class="transactionName">{{u.category}}</span>
+                                </div>
+                                <div class="col s3" style="text-align: center;">
+                                    <span class="transactionNameB" style="color: green" ng-if="u.baseType == 'CREDIT'"><span ng-if="u.baseType == 'DEBIT'">- </span>{{u.amount | currency}}</span>
+                                    <span class="transactionNameB" style="color: black" ng-if="u.baseType == 'DEBIT'">- {{u.amount | currency}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6" style="height: 430px;">
+            <div class="col-content finalPageColContent" style="height: 410px;overflow: scroll;">
+                <div style="text-align: center;margin-top: 80px;height: 100px" ng-show="!accounts_show">
+                    <img src="img/loading.gif" style="width: 100px;">
+                </div>
+                <div ng-repeat="x in ListofAccountArray">
+                    <div class="finalPageColContentSiteHeader" style="padding-left: 10px;">
+                        {{x.bankName}}
+                    </div>
+                    <div class="col s12" style="padding: 0px;">
+                        <div class="subheader">
+                            Cards
+                        </div>
+                    </div>
+                    <div class="row transactionRow" ng-repeat="y in x.details">
+                        <div class="col s5">
+                            <div class="transactionType fmbold" style="padding-top: 10px;color:#1e1d1c;font-size: 15px;">{{y.holderName}}</div>
+                            <br>
+                        </div>
+                        <div class="col s3">
+                            <div class="transactionNameB fmregular" style="text-align:left;color:#77716f !important;padding-top: 5px;font-size: 14px;">
+                                {{y.accountType}}
+                                <br> | x-{{y.account_number}}
+                            </div>
+                        </div>
+                        <div class="col s4">
+                            <div class="transactionNameB fmregular" style="color:#1e1d1c !important;padding-top: 10px;font-size: 14px;float: right;">{{y.balance | currency}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6" style="height: 30px">
+            <div class="col s6 fmbold" style="font-size: 20px;padding: 1px">Expense Analysis</div>
+        </div>
+        <div class="col s6" style="height: 350px;margin-top:10px;">
+            <div class="col-content finalPageColContent" id="ExpenseAnalysisChart">
+                <div style="text-align: center;margin-top: 80px;height: 100px" ng-show="!expenseChart_show">
+                    <img src="img/loading.gif" style="width: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content" id="FLDiv">
+    </div>
+</div>
