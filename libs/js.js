@@ -26,6 +26,26 @@ YDLDemoApp.config(function($routeProvider, $stateProvider, $urlRouterProvider) {
 
 YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YDLService, $rootScope) {
     $scope.linkAccountButtonDisable = true;
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    todayDate = yyyy + '-' + mm + '-' + dd;
+
+    var d = new Date(todayDate);
+    d.setMonth(d.getMonth() - 5);
+    var oldmm = d.getMonth() + 1;
+    if (oldmm < 10) {
+        oldmm = '0' + oldmm
+    }
+    var yyyyy = d.getFullYear();
+    var oldDate = yyyyy + '-' + oldmm + '-01';
     $('.modal').modal();
     $('.modal').modal({
         dismissible: false
@@ -89,6 +109,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
 
 
     $scope.getListofAccounts = function() {
+
         var getListofAccountsHeaders = '{cobSession=' + cobSessionToken + ',userSession=' + userSessionToken + '}';
         var getListofAccountsParams = {
 
@@ -101,15 +122,17 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
             var data = dataa.data.account;
 
             data.forEach(function(account, index) {
-                if (account && account.accountNumber) {
+                if ((account && account.accountNumber) && (account && account.balance)) {
                     if (AccountsArray[account.providerName] === undefined) {
                         AccountsArray[account.providerName] = {};
                         AccountsArray[account.providerName]["bankName"] = account.providerName;
                         AccountsArray[account.providerName]["details"] = [];
                     }
                     var holderName = account.providerName;
-                    if (account && account.holderProfile && account.holderProfile[0].name) {
+                    if (account && account.holderProfile && account.holderProfile[0].name && account.holderProfile[0].name.displayed) {
                         holderName = account.holderProfile[0].name.displayed;
+                    } else if (account && account.holderProfile && account.holderProfile[0].name && account.holderProfile[0].name.fullName) {
+                        holderName = account.holderProfile[0].name.fullName;
                     }
                     var accountNumber1 = account.accountNumber.toString();
                     var account_number = accountNumber1.substr(accountNumber1.length - 4);
@@ -121,7 +144,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
                         'account_number': account_number
                     });
                 } else {
-                    console.log('No account');
+                    // console.log('No account');
                 }
             });
             $scope.ListofAccountArray = AccountsArray;
@@ -135,7 +158,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
         };
         var getListofExpenseDataHeaders = '{cobSession=' + cobSessionToken + ',userSession=' + userSessionToken + '}';
 
-        YDLService.postRequest('https://developer.api.yodlee.com/ysl/restserver/v1/transactions?baseType=DEBIT&fromDate=2017-03-01&toDate=2017-08-24', getListofExpenseDataParams, getListofExpenseDataHeaders).then(function(dataa) {
+        YDLService.postRequest('https://developer.api.yodlee.com/ysl/restserver/v1/transactions?baseType=DEBIT&fromDate=' + oldDate + '&toDate=' + todayDate, getListofExpenseDataParams, getListofExpenseDataHeaders).then(function(dataa) {
 
             $scope.expenseChart_show = false;
 
@@ -179,7 +202,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
                     }
                 },
                 title: {
-                    text: monthlyExpenseChartData[monthlyExpenseChartData.length - 1].name +" "+ new Date().getFullYear(),
+                    text: monthlyExpenseChartData[monthlyExpenseChartData.length - 1].name + " " + new Date().getFullYear(),
                     style: {
                         fontFamily: 'ProximaNovaSemiBold',
                         fontSize: '16px',
@@ -253,7 +276,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
 
         };
         var getExpenseDataHeaders = '{cobSession=' + cobSessionToken + ',userSession=' + userSessionToken + '}';
-        YDLService.postRequest('https://developer.api.yodlee.com/ysl/restserver/v1/transactions?fromDate=2017-03-01&toDate=2017-08-24', getExpenseDataParams, getExpenseDataHeaders).then(function(dataa) {
+        YDLService.postRequest('https://developer.api.yodlee.com/ysl/restserver/v1/transactions?fromDate=' + oldDate + '&toDate=' + todayDate, getExpenseDataParams, getExpenseDataHeaders).then(function(dataa) {
             $scope.transaction_show = true;
             var data = dataa.data.transaction;
             getTransactionsDataa = data;
@@ -272,7 +295,6 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
                 });
             });
             $scope.postedTranscation = TransactionsDataArray;
-            console.log($scope.postedTranscation);
 
         }, function(e) {
             alert("Get Transactions Failed:=======" + JSON.stringify(e));
