@@ -301,36 +301,6 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
         })
     };
 
-
-    // function rahul() {
-
-    //     var arrayList = [],
-    //         obj_c_processed = [],
-    //         ra = {};
-    //     for (var i in getAccountsData) {
-    //         var obj = { accountId: getAccountsData[i].id, name: getAccountsData[i].accountName };
-
-    //         for (var j in getTransactionsDataa) {
-    //             if (getAccountsData[i].id == getTransactionsDataa[j].accountId) {
-    //                 if (ra[getTransactionsDataa[j].accountId] == undefined) {
-    //                     ra[getTransactionsDataa[j].accountId] = {};
-    //                     ra[getTransactionsDataa[j].accountId]['details'] = [];
-    //                 }
-
-    //                 console.log(ra);
-    //                 ra[getTransactionsDataa[j].accountId]['details'].push({
-    //                     'accountId': getTransactionsDataa[j].accountId
-    //                 })
-
-    //             }
-    //         }
-    //         // arrayList.push(obj);
-    //         console.log(ra);
-    //     }
-    //     // console.log(arrayList);
-
-    // };
-
     $scope.LinkAccountButtonClicked = function() {
 
         var iframe = document.createElement('iframe');
