@@ -97,6 +97,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
         YDLService.postRequest(url.YSLUrl + url.getTokenUrl, getTokenParams, getTokenHeaders).then(function(data) {
                 Token = data.data.user.accessTokens[0].value;
                 $scope.showAllData = true;
+                $scope.loadingBar = true;
                 $scope.getListofAccounts();
                 $scope.getListofExpense();
                 $scope.getListofTransactions();

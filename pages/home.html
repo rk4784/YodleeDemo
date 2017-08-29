@@ -28,6 +28,23 @@
         </button>
     </div>
 </div>
+<div class="row" ng-show="!loadingBar">
+    <div class="col s12" style="text-align: center;">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div ng-show="showAllData">
     <div class="row">
         <div class="col s6 fmbold" style="font-size: 20px;padding-left: 15px;">Transactions</div>
