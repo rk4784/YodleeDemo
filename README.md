@@ -3,7 +3,7 @@ Demo to demonstrate  to Yodlee Account Aggregation
 
 Step:1 Download code from this url https://github.com/rk4784/YodleeDemo
 
-Step:2 Click Clone or download button and download as a zip file and extract the zip on your local machine.
+Step:2 Click Clone or download button and download as a zip file and extract the zip on your local machine and rename "YodleeDemo-master" to "YodleeDemo".
 
 Step:3 Put the extracted code on apache server.
   
