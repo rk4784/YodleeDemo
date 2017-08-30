@@ -7,7 +7,7 @@ Step 2: Click "Clone or download" button and download as a zip file and extract 
 
 Step 3: Open cmd or terminal and go to project location using "cd" command then Run "npm install" command.
 
-Step 4: Put your cobrand details and user details in Config.js file(cobrand and user details can be found on api dashboard page on yodlee developer portal).
+Step 4: Put your cobrand details and user details in Config.js file(cobrand and user details can be found on api dashboard page on <a href="https://developer.yodlee.com/api-dashboard">yodlee developer portal</a>).
 
 Step 5: Download node on your local machine and run "node server.js" command.
 
