@@ -1,4 +1,30 @@
 @font-face {
+    font-family: 'ProximaNovaSemiBold';
+    src: url('../fonts/proximanova-sbold.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/proximanova-sbold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/proximanova-sbold.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/proximanova-sbold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'ProximaNovaRegular';
+    src: url('../fonts/proximanova-reg.eot');
+    /* IE9 Compat Modes */
+    src: url('../fonts/proximanova-reg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/proximanova-reg.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/proximanova-reg.woff2') format('woff2'), /* Modern Browsers */
+    url('../fonts/proximanova-reg.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+
+/*@font-face {
     font-family: ProximaNovaRegular;
     src: url('https://money.yodlee.com/default/fonts/proximanova-reg.woff2?id=2017082110520');
     font-style: normal;
@@ -10,12 +36,12 @@
     src: url('https://money.yodlee.com/default/fonts/proximanova-sbold.woff?id=2017082110520');
     font-style: normal;
     font-weight: normal;
-}
+}*/
 
 html {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
-  }
+}
 
 body {
     /*position: absolute;*/
@@ -29,12 +55,15 @@ body {
 a {
     color: #0C76BE;
 }
-.fmregular{
+
+.fmregular {
     font-family: ProximaNovaRegular;
 }
-.fmbold{
+
+.fmbold {
     font-family: ProximaNovaSemiBold;
 }
+
 .mainRow {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -52,9 +81,13 @@ a {
     background: #00529f;
     opacity: 0.9;
 }
-.btn:focus, .btn-large:focus, .btn-floating:focus{
+
+.btn:focus,
+.btn-large:focus,
+.btn-floating:focus {
     background-color: #00529f;
 }
+
 .secondaryButton {
     background: #fff;
     line-height: 40px;
