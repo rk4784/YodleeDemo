@@ -9,6 +9,6 @@ Step 3: Open cmd or terminal and go to project location using "cd" command then 
 
 Step 4: Put your cobrand details and user details in Config.js file(cobrand and user details can be found on api dashboard page on yodlee developer portal).
 
-Step 5: Run "node server.js" command.
+Step 5: Download node on your local machine and run "node server.js" command.
 
 Step 6: Open browser and  click <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>. This will open yodlee demo app for you.
