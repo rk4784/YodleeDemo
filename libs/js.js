@@ -46,9 +46,8 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
     }
     var yyyyy = d.getFullYear();
     var oldDate = yyyyy + '-' + oldmm + '-01';
-    $('.modal').modal();
     $('.modal').modal({
-        dismissible: false
+        dismissible: true
     });
 
     $('.modal-overlay').remove();
@@ -98,10 +97,10 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
                 Token = data.data.user.accessTokens[0].value;
                 $scope.showAllData = true;
                 $scope.loadingBar = true;
+                $scope.linkAccountButtonDisable = false;
                 $scope.getListofAccounts();
                 $scope.getListofExpense();
                 $scope.getListofTransactions();
-                $scope.linkAccountButtonDisable = false;
             },
             function(e) {
                 alert("Get Token Failed:====" + JSON.stringify(e));
@@ -145,7 +144,7 @@ YDLDemoApp.controller('homeController', function($scope, $location, $timeout, YD
                         'account_number': account_number
                     });
                 } else {
-                    // console.log('No account');
+                    console.log('No account');
                 }
             });
             $scope.ListofAccountArray = AccountsArray;
